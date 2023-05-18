@@ -1,0 +1,5 @@
+<van-tabbar active="{{ active }}" bind:change="onChange" safe-area-inset-bottom="true">
+  <van-tabbar-item icon="shopping-cart-o">点单</van-tabbar-item>
+  <van-tabbar-item icon="completed">订单</van-tabbar-item>
+  <van-tabbar-item icon="user-o">我的</van-tabbar-item>
+</van-tabbar>
