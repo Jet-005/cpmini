@@ -30,9 +30,14 @@
     "pages/goods-details/index",
     "pages/manager/index",
     "pages/managerOrder/index",
-    "manager/category/index"
+    "manager/category/index",
+    "manager/category/new"
   ],
-  "requiredPrivateInfos": ["getLocation", "chooseLocation", "chooseAddress"],
+  "requiredPrivateInfos": [
+    "getLocation",
+    "chooseLocation",
+    "chooseAddress"
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -71,7 +76,6 @@
     }
   },
   "usingComponents": {
-    "parser": "/components/parser.20200731.min/parser",
     "van-button": "@vant/weapp/button/index",
     "van-empty": "@vant/weapp/empty/index",
     "van-sidebar": "@vant/weapp/sidebar/index",

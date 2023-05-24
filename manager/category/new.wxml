@@ -1,0 +1,2 @@
+<!--manager/category/new.wxml-->
+<van-field model:value="{{ value }}" required label="分类名称" error error-message="请填写分类名称" placeholder="请输入用户名" border="{{ false }}" bind:change="onChange" />

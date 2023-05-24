@@ -18,7 +18,7 @@
 </view> -->
 
 <view class="box1" wx:if="role === 0">
-  <view wx:if="categories.length">
+ <!--  <view wx:if="categories.length">
     <van-sidebar active-key="{{ mainActiveIndex }}">
       <van-sidebar-item wx:for="{{ categories }}" wx:key="id" title="{{ item.text }}" bind:click="categoryNavClick" />
     </van-sidebar>
@@ -41,7 +41,7 @@
   </view>
   <view wx:else class="empty_box">
     <van-empty description="当前无商品信息,请联系配对人添加商品" />
-  </view>
+  </view> -->
 </view>
 <view class="box1" wx:elif="role === 1">
 
