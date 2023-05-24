@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/noConnect/index",
     "pages/all-orders/index",
     "pages/my/index",
     "pages/my/feedback",
@@ -72,6 +73,7 @@
   "usingComponents": {
     "parser": "/components/parser.20200731.min/parser",
     "van-button": "@vant/weapp/button/index",
+    "van-empty": "@vant/weapp/empty/index",
     "van-sidebar": "@vant/weapp/sidebar/index",
     "van-sidebar-item": "@vant/weapp/sidebar-item/index",
     "van-tree-select": "@vant/weapp/tree-select/index",

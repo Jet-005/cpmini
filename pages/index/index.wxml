@@ -16,29 +16,42 @@
     </navigator>
   </view>
 </view> -->
-<view class="box1" wx:if="role === ''">
-  <van-sidebar active-key="{{ mainActiveIndex }}">
-    <van-sidebar-item wx:for="{{categories}}" wx:key="id" title="{{item.text}}" bind:click="categoryNavClick" />
-  </van-sidebar>
-  <scroll-view class="box-2" scroll-y="true" scroll-top="{{scrolltop}}" bindscrolltolower="_onReachBottom">
-    <van-empty wx:if="{{!goods || goods.length == 0}}" description="暂无商品" />
-    <van-card wx:for="{{goods}}" wx:key="id" lazy-load="true" price="{{item.price}}" thumb-mode="aspectFill" tag="{{ item.badge ? item.badge : '' }}" title="{{item.text}}" thumb-link="/pages/goods-details/index?id={{ item.id }}" thumb="{{item.pic}}">
-      <view slot="desc">
-        
-      </view>
-      <view class="goods-btn" slot="footer">
-        <van-button wx:if="{{ item.stores < item.minBuyNumber }}" size="small" color="#e64340" round disabled>补货中</van-button>
-        <van-button wx:elif="{{ item.miaosha && item.dateStartInt > 0 }}" size="small" color="#e64340" round disabled>即将开抢</van-button>
-        <van-button wx:elif="{{ item.miaosha && item.dateEndInt <= 0 }}" size="small" color="#e64340" round disabled>秒杀结束</van-button>
-        <van-button wx:elif="{{item.kanjia}}" size="small" color="#e64340" round data-idx="{{index}}" bind:click="goGoodsDetail">砍价</van-button>
-        <van-button wx:elif="{{item.pingtuan}}" size="small" color="#e64340" round data-idx="{{index}}" bind:click="showGoodsDetailPOP">一起拼</van-button>
-        <van-button wx:elif="{{item.propertyIds || item.hasAddition}}" size="small" color="#e64340" round data-idx="{{index}}" bind:click="showGoodsDetailPOP">选规格</van-button>
-        <van-icon wx:else name="add" color="#e64340" size="50rpx" data-idx="{{index}}" bind:click="addCart1" />
-      </view>
-    </van-card>
-  </scroll-view>
-</view>
 
+<view class="box1" wx:if="role === 0">
+  <view wx:if="categories.length">
+    <van-sidebar active-key="{{ mainActiveIndex }}">
+      <van-sidebar-item wx:for="{{ categories }}" wx:key="id" title="{{ item.text }}" bind:click="categoryNavClick" />
+    </van-sidebar>
+    <scroll-view class="box-2" scroll-y="true" scroll-top="{{scrolltop}}" bindscrolltolower="_onReachBottom">
+      <van-empty wx:if="{{!goods || goods.length == 0}}" description="暂无商品" />
+      <van-card wx:for="{{goods}}" wx:key="id" lazy-load="true" price="{{item.price}}" thumb-mode="aspectFill" tag="{{ item.badge ? item.badge : '' }}" title="{{item.text}}" thumb-link="/pages/goods-details/index?id={{ item.id }}" thumb="{{item.pic}}">
+        <view slot="desc">
+        </view>
+        <view class="goods-btn" slot="footer">
+          <van-button wx:if="{{ item.stores < item.minBuyNumber }}" size="small" color="#e64340" round disabled>补货中</van-button>
+          <van-button wx:elif="{{ item.miaosha && item.dateStartInt > 0 }}" size="small" color="#e64340" round disabled>即将开抢</van-button>
+          <van-button wx:elif="{{ item.miaosha && item.dateEndInt <= 0 }}" size="small" color="#e64340" round disabled>秒杀结束</van-button>
+          <van-button wx:elif="{{item.kanjia}}" size="small" color="#e64340" round data-idx="{{index}}" bind:click="goGoodsDetail">砍价</van-button>
+          <van-button wx:elif="{{item.pingtuan}}" size="small" color="#e64340" round data-idx="{{index}}" bind:click="showGoodsDetailPOP">一起拼</van-button>
+          <van-button wx:elif="{{item.propertyIds || item.hasAddition}}" size="small" color="#e64340" round data-idx="{{index}}" bind:click="showGoodsDetailPOP">选规格</van-button>
+          <van-icon wx:else name="add" color="#e64340" size="50rpx" data-idx="{{index}}" bind:click="addCart1" />
+        </view>
+      </van-card>
+    </scroll-view>
+  </view>
+  <view wx:else class="empty_box">
+    <van-empty description="当前无商品信息,请联系配对人添加商品" />
+  </view>
+</view>
+<view class="box1" wx:elif="role === 1">
+
+</view>
+<view wx:else>
+  <van-empty description="当前无配对对象,请点击下方按钮去配对">
+    <van-button round type="danger">去配对</van-button>
+  </van-empty>
+  <van-share-sheet show="{{ showShare }}" title="立即分享给好友" options="{{ options }}" bind:select="onSelect" bind:close="onClose" />
+</view>
 <view class="cart-bar" wx:if="{{shippingCarInfo && shippingCarInfo.number}}">
   <view class="l" bindtap="showCartPop">
     <van-button type="default" round icon="shopping-cart-o">购物车</van-button>

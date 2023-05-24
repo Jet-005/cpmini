@@ -57,10 +57,15 @@ App({
   },
   onShow(e) {
     AUTH.checkHasLogined().then(async (isLogined) => {
-      if (!isLogined) {
-        const result = await AUTH.login()
+      if (isLogined) {
+// const 
       } else {
-
+        const result = await AUTH.login()
+        if (!result.connectId) {
+          wx.redirectTo({
+            url: 'pages/noConnect/index'
+          })
+        }
       }
     })
 

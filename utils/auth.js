@@ -72,7 +72,8 @@ async function login() {
   if (data && utils.notEmptyObj(data)) {
     wx.setStorageSync('token', data.token)
     wx.setStorageSync('role', data.role || 0) // role-用来分辨角色
-    wx.setStorageSync('userId', data._id || '') // userId-用来查询用户数据
+    wx.setStorageSync('uId', data._id || '') // userId-用来查询用户数据
+    wx.setStorageSync('cId', data.connectId || '') // connectId-用来查询配对用户信息
   }
   return data
 }
