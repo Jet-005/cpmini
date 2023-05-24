@@ -27,13 +27,12 @@
     "pages/queue/index",
     "pages/cart/index",
     "pages/cart/order",
-    "pages/goods-details/index"
+    "pages/goods-details/index",
+    "pages/manager/index",
+    "pages/managerOrder/index",
+    "manager/category/index"
   ],
-  "requiredPrivateInfos": [
-    "getLocation",
-    "chooseLocation",
-    "chooseAddress"
-  ],
+  "requiredPrivateInfos": ["getLocation", "chooseLocation", "chooseAddress"],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -45,7 +44,8 @@
     "color": "#6e6d6b",
     "selectedColor": "#e64340",
     "backgroundColor": "#fff",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "iconPath": "images/nav/index-off.png",
         "selectedIconPath": "images/nav/index-on.png",
