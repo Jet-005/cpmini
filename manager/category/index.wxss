@@ -1,1 +1,57 @@
 /* manager/category/index.wxss */
+.custom-btn {
+  border: none !important;
+  color: #1582FC !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.warpper {
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}
+
+.nums {
+  font-size: 14px;
+  color: #919291;
+  margin: 15px 0;
+}
+
+.num {
+  color: #0F100F;
+}
+
+.category {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 15px 20px;
+}
+
+.category .title {
+  color: #101010;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.category .nums {
+  background-color: #F7F8F7;
+  border-radius: 4px;
+  height: 42px;
+  width: 100%;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.category .buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.category .buttons .custom-btn {
+  background-color: transparent;
+}

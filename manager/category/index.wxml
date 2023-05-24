@@ -1,19 +1,22 @@
 <!--manager/category/index.wxml-->
-<van-button>新增分类</van-button>
-<view class="nums">
-  <text>当前分类数量：{{}}</text>
-</view>
-<view class="categories_box">
-  <view class="category" wx:for="">
-    <view class="title">
-
-    </view>
-    <view class="nums">
-
-    </view>
-    <view class="buttons">
-      <van-button>菜品管理</van-button>
-      <van-button>编辑分类</van-button>
+<van-button custom-class="custom-btn" block icon="add-o" bind:click="newCategories">新增分类</van-button>
+<view class="warpper">
+  <view class="nums">
+    <text>当前分类数量：<text class="num">{{1}}</text></text>
+  </view>
+  <view class="categories_box">
+    <!-- wx:for="" -->
+    <view class="category">
+      <view class="title">
+        111
+      </view>
+      <view class="nums">
+        当前菜品总数:<text class="num">{{1}}</text>
+      </view>
+      <view class="buttons">
+        <van-button custom-class="custom-btn">菜品管理</van-button>
+        <van-button custom-class="custom-btn">编辑分类</van-button>
+      </view>
     </view>
   </view>
 </view>
