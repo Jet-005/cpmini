@@ -4,10 +4,15 @@ page {
     sans-serif;
   background-color: #f7f8f7;
 }
-page,view,image,input {
+
+page,
+view,
+image,
+input {
   display: block;
   box-sizing: border-box;
 }
+
 .badge {
   position: absolute;
   top: 0;
@@ -23,6 +28,7 @@ page,view,image,input {
   border: 1rpx solid #fff;
   border-radius: 50%;
 }
+
 .block-btn {
   padding: 0 32rpx;
 }

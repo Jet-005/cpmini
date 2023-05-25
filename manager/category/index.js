@@ -62,5 +62,10 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  newCategories() {
+    wx.navigateTo({
+      url: "./new"
+    })
   }
 })

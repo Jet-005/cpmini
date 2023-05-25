@@ -1,12 +1,11 @@
-// manager/category/new.js
+// manager/category/new/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    value: "",
-    errorMsg:""
+
   },
 
   /**

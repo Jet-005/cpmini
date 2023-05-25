@@ -34,9 +34,7 @@
     "manager/category/new"
   ],
   "requiredPrivateInfos": [
-    "getLocation",
-    "chooseLocation",
-    "chooseAddress"
+
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -49,8 +47,7 @@
     "color": "#6e6d6b",
     "selectedColor": "#e64340",
     "backgroundColor": "#fff",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "iconPath": "images/nav/index-off.png",
         "selectedIconPath": "images/nav/index-on.png",
