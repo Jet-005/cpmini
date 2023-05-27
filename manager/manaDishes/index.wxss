@@ -1,0 +1,12 @@
+/* manager/manaDishes/index.wxss */
+.manage_header {
+  width: 100%;
+  background-color: #ffffff;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  margin-bottom: 10px;
+}
+
+.manaDishes_box {}

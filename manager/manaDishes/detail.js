@@ -1,11 +1,14 @@
-// manager/category/new/index.js
+// manager/manaDishes/detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    form: {
+      name: "",
+      isFeatured: false,
+    }
   },
 
   /**

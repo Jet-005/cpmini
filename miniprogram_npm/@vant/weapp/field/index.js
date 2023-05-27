@@ -49,19 +49,16 @@ var props_1 = require("./props");
         this.setData({ innerValue: this.value });
     },
     methods: {
-        formatValue: function (value) {
-            var maxlength = this.data.maxlength;
-            if (maxlength !== -1 && value.length > maxlength) {
-                return value.slice(0, maxlength);
-            }
-            return value;
-        },
         onInput: function (event) {
             var _a = (event.detail || {}).value, value = _a === void 0 ? '' : _a;
-            var formatValue = this.formatValue(value);
-            this.value = formatValue;
+            this.value = value;
+            var maxlength = this.data.maxlength;
+            if (maxlength !== -1 && value.length > maxlength) {
+                this.value = value.slice(0, maxlength);
+                event.detail.value = this.value;
+            }
             this.setShowClear();
-            return this.emitChange(__assign(__assign({}, event.detail), { value: formatValue }));
+            this.emitChange(event.detail);
         },
         onFocus: function (event) {
             this.focused = true;
@@ -110,16 +107,14 @@ var props_1 = require("./props");
             this.$emit('keyboardheightchange', event.detail);
         },
         emitChange: function (detail) {
+            var _this = this;
             var extraEventParams = this.data.extraEventParams;
             this.setData({ value: detail.value });
-            var result;
-            var data = extraEventParams
-                ? __assign(__assign({}, detail), { callback: function (data) {
-                        result = data;
-                    } }) : detail.value;
-            this.$emit('input', data);
-            this.$emit('change', data);
-            return result;
+            (0, utils_1.nextTick)(function () {
+                var data = extraEventParams ? detail : detail.value;
+                _this.$emit('input', data);
+                _this.$emit('change', data);
+            });
         },
         setShowClear: function () {
             var _a = this.data, clearable = _a.clearable, readonly = _a.readonly, clearTrigger = _a.clearTrigger;

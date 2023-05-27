@@ -1,0 +1,10 @@
+<!--manager/manaDishes/detail.wxml-->
+<van-field value="{{ form.category }}" label="菜品分类" placeholder="分类名称" border="{{ false }}" />
+<van-field value="{{ form.name }}" required label="菜品名称" error error-message="{{ errorMsg }}" placeholder="菜品名称" border="{{ false }}" />
+<van-field value="{{ form.price }}" required label="菜品价格" error error-message="{{ errorMsg }}" placeholder="菜品价格" border="{{ false }}" />
+<van-cell title="是否为特色菜品" value="">
+  <van-switch checked="{{ form.isFeatured }}" bind:change="onChange" />
+</van-cell>
+<view class="com_btn_footer">
+  <van-button color="#1890FF" block bind:click="doSaveCategories">保存</van-button>
+</view>

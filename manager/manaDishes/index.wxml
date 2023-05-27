@@ -1,0 +1,22 @@
+<!--manager/manaDishes/index.wxml-->
+<view class="manage_header">
+  <view class="com_nums_item">
+    <text>{{}}菜品数量<text class="num">{{1}}</text></text>
+  </view>
+  <van-button class="com_text_btn" block icon="add-o" bind:click="newManaDishes">新增</van-button>
+</view>
+<view class="manaDishes_box com_layout">
+  <!-- wx:for="" -->
+  <view class="com_block_box">
+    <view class="title">
+      111
+    </view>
+    <view class="com_nums_item">
+      当前菜品总数:<text class="num">{{1}}</text>
+    </view>
+    <view class="buttons">
+      <van-button class="com_text_btn" bind:click="manageDishesDetail">菜品详情</van-button>
+      <van-button class="com_text_btn" bind:click="doChangeStatus">{{'上线'}}</van-button>
+    </view>
+  </view>
+</view>

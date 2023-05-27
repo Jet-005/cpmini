@@ -1,4 +1,4 @@
-// manager/category/index.js
+// manager/manaDishes/index.js
 Page({
 
   /**
@@ -63,22 +63,19 @@ Page({
   onShareAppMessage() {
 
   },
-  newCategories() {
+  newManaDishes() {
     wx.navigateTo({
-      url: "./new"
+      url: '../manaDishes/detail',
     })
   },
-  editCategories() {
-    const {
-      id
-    } = this.data
+  manageDishesDetail(e) {
+    const id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: `./new?id=${id}`
+      url: `../manaDishes/detail?id=${id}`,
     })
   },
-  manageDishes() {
-    wx.navigateTo({
-      url: `../manaDishes/index`
-    })
+  doChangeStatus(e) {
+    const id = e.currentTarget.dataset.id
+    
   }
 })

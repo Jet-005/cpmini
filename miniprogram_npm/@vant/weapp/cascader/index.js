@@ -26,6 +26,7 @@ var defaultFieldNames = {
         title: String,
         value: {
             type: String,
+            observer: 'updateValue',
         },
         placeholder: {
             type: String,
@@ -38,6 +39,7 @@ var defaultFieldNames = {
         options: {
             type: Array,
             value: [],
+            observer: 'updateOptions',
         },
         swipeable: {
             type: Boolean,
@@ -67,20 +69,15 @@ var defaultFieldNames = {
         textKey: FieldName.TEXT,
         valueKey: FieldName.VALUE,
         childrenKey: FieldName.CHILDREN,
-        innerValue: '',
-    },
-    watch: {
-        options: function () {
-            this.updateTabs();
-        },
-        value: function (newVal) {
-            this.updateValue(newVal);
-        },
     },
     created: function () {
         this.updateTabs();
     },
     methods: {
+        updateOptions: function (val, oldVal) {
+            var isAsync = !!(val.length && oldVal.length);
+            this.updateTabs(isAsync);
+        },
         updateValue: function (val) {
             var _this = this;
             if (val !== undefined) {
@@ -89,7 +86,6 @@ var defaultFieldNames = {
                     return;
                 }
             }
-            this.innerValue = val;
             this.updateTabs();
         },
         updateFieldNames: function () {
@@ -114,15 +110,12 @@ var defaultFieldNames = {
                 }
             }
         },
-        updateTabs: function () {
+        updateTabs: function (isAsync) {
             var _this = this;
-            var options = this.data.options;
-            var innerValue = this.innerValue;
-            if (!options.length) {
-                return;
-            }
-            if (innerValue !== undefined) {
-                var selectedOptions = this.getSelectedOptionsByValue(options, innerValue);
+            if (isAsync === void 0) { isAsync = false; }
+            var _a = this.data, options = _a.options, value = _a.value;
+            if (value !== undefined) {
+                var selectedOptions = this.getSelectedOptionsByValue(options, value);
                 if (selectedOptions) {
                     var optionsCursor_1 = options;
                     var tabs_1 = selectedOptions.map(function (option) {
@@ -152,6 +145,16 @@ var defaultFieldNames = {
                     });
                     return;
                 }
+            }
+            // 异步更新
+            if (isAsync) {
+                var tabs = this.data.tabs;
+                tabs[tabs.length - 1].options =
+                    options[options.length - 1][this.data.childrenKey];
+                this.setData({
+                    tabs: tabs,
+                });
+                return;
             }
             this.setData({
                 tabs: [
@@ -206,13 +209,11 @@ var defaultFieldNames = {
                 tabs: tabs,
             });
             var selectedOptions = tabs.map(function (tab) { return tab.selected; }).filter(Boolean);
-            var value = option[valueKey];
             var params = {
-                value: value,
+                value: option[valueKey],
                 tabIndex: tabIndex,
                 selectedOptions: selectedOptions,
             };
-            this.innerValue = value;
             this.$emit('change', params);
             if (!option[childrenKey]) {
                 this.$emit('finish', params);

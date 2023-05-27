@@ -1,3 +1,5 @@
 <!--manager/category/new.wxml-->
-<van-field value="{{ value }}" required label="分类名称" error error-message="{{ errorMsg }}" placeholder="分类名称" border="{{ false }}" />
-
+<van-field value="{{ name }}" required label="分类名称" error error-message="{{ errorMsg }}" placeholder="分类名称" border="{{ false }}" />
+<view class="com_btn_footer">
+  <van-button color="#1890FF" block bind:click="doSaveCategories">保存</van-button>
+</view>

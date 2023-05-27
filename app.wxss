@@ -32,3 +32,74 @@ input {
 .block-btn {
   padding: 0 32rpx;
 }
+
+.custom-button {
+  background-color: transparent;
+}
+
+.com_btn_footer {
+  position: fixed;
+  bottom: 0;
+  background-color: #fff;
+  width: 100%;
+  height: 56px;
+  padding: 8px 10px;
+}
+
+.com_btn_footer .van-button {
+  border-radius: 8px;
+}
+
+.com_text_btn .van-button {
+  /* background-color: transparent; */
+  border: none;
+  color: #1582FC;
+  justify-content: center;
+  align-items: center;
+}
+
+.com_nums_item {
+  font-size: 14px;
+  color: #919291;
+  margin: 15px 0;
+}
+
+.com_nums_item .num {
+  color: #0F100F;
+}
+
+.com_block_box {
+  width: 100%;
+  height: 140px;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 15px 20px;
+}
+
+.com_block_box .title {
+  color: #101010;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.com_block_box .nums {
+  background-color: #F7F8F7;
+  border-radius: 4px;
+  height: 42px;
+  width: 100%;
+  padding-left: 10px;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.com_block_box .buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.com_layout {
+  padding-left: 20px;
+  padding-right: 20px;
+  box-sizing: border-box;
+}

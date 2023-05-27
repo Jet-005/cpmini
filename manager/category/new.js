@@ -5,8 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    value: "",
-    errorMsg:""
+    name: "",
+    errorMsg: ""
   },
 
   /**
@@ -63,5 +63,11 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  doSaveCategories() {
+    const {
+      name
+    } = this.data
+    wx.navigateBack()
   }
 })
