@@ -1,0 +1,28 @@
+<!--manager/orderMana/index.wxml-->
+<van-search value="{{ searchValue }}" placeholder="请输入订单编号/商品名称" />
+<van-tabs active="{{ active }}" bind:change="onChange">
+  <van-tab title="标签 1">全部</van-tab>
+  <van-tab title="标签 3">已完成</van-tab>
+</van-tabs>
+<scroll-view scroll-y="true" style="height: 300rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+  <view class="order_wrapper">
+    <view class="header">
+      <text>订单编号：</text><text></text>
+    </view>
+    <view class="body">
+      <view class="info">
+        <van-image width="70px" height="70px" fit="contain" src="https://img.yzcdn.cn/vant/cat.jpeg" radius="8px" />
+        <view class="goods_info">
+          <text class="goods_name"></text>
+          <text class="goods_price"></text>
+        </view>
+      </view>
+      <view class="num"></view>
+    </view>
+    <view class="oper_area">
+      <van-button type="info">接单</van-button>
+      <van-button type="info">拒单</van-button>
+
+    </view>
+  </view>
+</scroll-view>

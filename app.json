@@ -33,9 +33,10 @@
     "manager/category/index",
     "manager/category/new",
     "manager/manaDishes/index",
-    "manager/manaDishes/detail"
+    "manager/manaDishes/detail",
+    "manager/orderMana/index",
+    "manager/orderMana/detail"
   ],
-  "requiredPrivateInfos": [],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -74,6 +75,13 @@
     }
   },
   "usingComponents": {
+    "van-image": "@vant/weapp/image/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-search": "@vant/weapp/search/index",
+    "van-uploader": "@vant/weapp/uploader/index",
     "van-switch": "@vant/weapp/switch/index",
     "van-button": "@vant/weapp/button/index",
     "van-empty": "@vant/weapp/empty/index",
@@ -93,11 +101,8 @@
     "van-cell-group": "@vant/weapp/cell-group/index",
     "van-dialog": "@vant/weapp/dialog/index",
     "van-overlay": "@vant/weapp/overlay/index",
-    "van-tab": "@vant/weapp/tab/index",
     "van-datetime-picker": "@vant/weapp/datetime-picker/index",
     "van-notice-bar": "@vant/weapp/notice-bar/index",
-    "van-tabbar": "@vant/weapp/tabbar/index",
-    "van-tabbar-item": "@vant/weapp/tabbar-item/index",
     "van-tag": "@vant/weapp/tag/index",
     "van-goods-action": "@vant/weapp/goods-action/index",
     "van-goods-action-icon": "@vant/weapp/goods-action-icon/index",

@@ -5,6 +5,9 @@
 <van-cell title="是否为特色菜品" value="">
   <van-switch checked="{{ form.isFeatured }}" bind:change="onChange" />
 </van-cell>
+<van-field value="{{ form.price }}" label="商品介绍" placeholder="请输入简短的商品介绍" border="{{ false }}" />
+<van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="5"/>
+
 <view class="com_btn_footer">
   <van-button color="#1890FF" block bind:click="doSaveCategories">保存</van-button>
 </view>
