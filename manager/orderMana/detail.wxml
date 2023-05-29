@@ -1,2 +1,20 @@
 <!--manager/orderMana/detail.wxml-->
-<text>manager/orderMana/detail.wxml</text>
+<van-steps steps="{{ steps }}" active="{{ active }}" />
+<van-card num="2" price="2.00" desc="描述信息" title="商品标题" thumb="{{ imageURL }}" />
+<view class="order_info">
+  <van-cell value="订单编号" border="{{ false }}">
+  </van-cell>
+  <van-cell value="下单时间" border="{{ false }}">
+  </van-cell>
+  <van-cell value="备注" border="{{ false }}">
+  </van-cell>
+</view>
+<view class="amount">
+  <van-cell value="商品金额" border="{{ false }}">
+  </van-cell>
+</view>
+<view class="com_btn_footer">
+  <van-button color="#1890FF" bind:click="doSaveCategories">接单</van-button>
+  <van-button color="#1890FF" bind:click="doSaveCategories">拒绝</van-button>
+  <van-button color="#1890FF" bind:click="doSaveCategories">查看评价</van-button>
+</view>

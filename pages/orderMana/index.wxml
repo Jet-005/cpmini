@@ -6,23 +6,26 @@
 </van-tabs>
 <scroll-view scroll-y="true" style="height: 300rpx;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
   <view class="order_wrapper">
-    <view class="header">
-      <text>订单编号：</text><text></text>
-    </view>
-    <view class="body">
-      <view class="info">
-        <van-image width="70px" height="70px" fit="contain" src="https://img.yzcdn.cn/vant/cat.jpeg" radius="8px" />
-        <view class="goods_info">
-          <text class="goods_name"></text>
-          <text class="goods_price"></text>
-        </view>
+    <view class="order_body" bindtap="toDetail">
+      <view class="header">
+        <text>订单编号：</text><text></text>
       </view>
-      <view class="num"></view>
+      <view class="body">
+        <view class="info">
+          <van-image width="70px" height="70px" fit="contain" src="https://img.yzcdn.cn/vant/cat.jpeg" radius="8px" />
+          <view class="goods_info">
+            <text class="goods_name"></text>
+            <text class="goods_price"></text>
+          </view>
+        </view>
+        <view class="num"></view>
+      </view>
     </view>
+
     <view class="oper_area">
       <van-button type="info">接单</van-button>
       <van-button type="info">拒单</van-button>
-
+      <van-button type="info">完成</van-button>
     </view>
   </view>
 </scroll-view>
