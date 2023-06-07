@@ -30,7 +30,11 @@
     "manager/manaDishes/index",
     "manager/manaDishes/detail",
     "pages/orderMana/index",
-    "manager/orderMana/detail"
+    "manager/orderMana/detail",
+    "user/cart/index",
+    "user/dishes/detail/index",
+    "user/dishes/comment/index",
+    "user/settlement/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

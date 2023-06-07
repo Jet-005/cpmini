@@ -1,0 +1,7 @@
+<!--user/cart/index.wxml-->
+<view class="cart_box">
+  <van-card num="2" price="2.00" desc="描述信息" title="商品标题" thumb="{{ imageURL }}" />
+</view>
+<view class="submit_box">
+  <van-submit-bar price="{{ 3050 }}" button-text="提交订单" bind:submit="onSubmit" />
+</view>
