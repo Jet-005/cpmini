@@ -1,0 +1,6 @@
+<!--components/login/index.wxml-->
+<view class="login_box">
+
+  <van-button class="com_text_btn" block icon="add-o" bind:click="login">点击登录</van-button>
+
+</view>

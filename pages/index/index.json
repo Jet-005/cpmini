@@ -1,3 +1,9 @@
 {
-  "navigationBarTitleText": ""
+  "navigationBarTitleText": "",
+  "component": true,
+  "usingComponents": {
+    "manager": "/components/manager/index",
+    "user": "/components/user/index",
+    "login": "/components/login/index"
+  }
 }
