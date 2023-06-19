@@ -56,18 +56,18 @@ App({
 
   },
   onShow(e) {
-    AUTH.checkHasLogined().then(async (isLogined) => {
-      if (isLogined) {
-// const 
-      } else {
-        const result = await AUTH.login()
-        if (!result.connectId) {
-          wx.redirectTo({
-            url: 'pages/noConnect/index'
-          })
-        }
-      }
-    })
+//     AUTH.checkHasLogined().then(async (isLogined) => {
+//       if (isLogined) {
+// // const 
+//       } else {
+//         const result = await AUTH.login()
+//         if (!result.connectId) {
+//           wx.redirectTo({
+//             url: 'pages/noConnect/index'
+//           })
+//         }
+//       }
+//     })
 
     // 保存邀请人
     if (e && e.query && e.query.inviter_id) {

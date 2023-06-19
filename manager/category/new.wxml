@@ -1,5 +1,7 @@
-<!--manager/category/new.wxml-->
-<van-field value="{{ name }}" required label="分类名称" error error-message="{{ errorMsg }}" placeholder="分类名称" border="{{ false }}" />
+<!--manager/category/new.wxml error-message="{{ errorMsg }}" -->
+<form catchsubmit="formSubmit" catchreset="formReset">
+  <van-field model:value="{{ name }}" required label="分类名称" error="{{ showError }}" bind:change="onChange" placeholder="分类名称" border="{{ false }}" />
+</form>
 <view class="com_btn_footer">
-  <van-button color="#1890FF" block bind:click="doSaveCategories">保存</van-button>
+  <van-button color="#1890FF" form-type="submit" block bind:click="doSave">保存</van-button>
 </view>

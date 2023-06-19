@@ -2,10 +2,12 @@ const config = require('../config.js')
 const baseUrl = config.subDomain
 // const AUTH = require('./auth.js')
 const token = wx.getStorageSync('token')
-import Toast from '@vant/weapp/toast/toast';
+const userId = wx.getStorageSync('uId')
 
+import Toast from '@vant/weapp/toast/toast';
 const request = async (url, method, data = {}, headers = {
-  'Authorization': 'Bearer ' + token
+  'Authorization': 'Bearer ' + token,
+  uid: userId || ''
 }) => {
   // if (await AUTH.checkHasLogined()) {
   return new Promise((resolve, reject) => {
@@ -14,6 +16,7 @@ const request = async (url, method, data = {}, headers = {
       method,
       data,
       header: headers,
+      dataType: 'json',
       success: (res) => {
         const resData = res.data
         if (resData.code !== 200) {
@@ -37,8 +40,8 @@ const request = async (url, method, data = {}, headers = {
   // }
 
 }
-const get = (url, data) => {
-  return request(url, 'get', data)
+const get = (url, params) => {
+  return request(url, 'get', params)
 }
 const post = (url, data) => {
   return request(url, 'post', data)

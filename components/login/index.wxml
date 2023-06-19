@@ -1,6 +1,11 @@
 <!--components/login/index.wxml-->
-<view class="login_box">
-
-  <van-button class="com_text_btn" block icon="add-o" bind:click="login">点击登录</van-button>
-
-</view>
+<van-overlay show="{{ show }}">
+  <view class="login_box">
+    <view class="tips_box has_shadow">
+      <view class="circle has_shadow">
+      </view>
+      <view class="text">暂未登录,请先登录</view>
+      <van-button class="com_text_btn login_btn" block icon="add-o" bind:click="doLogin">点击登录</van-button>
+    </view>
+  </view>
+</van-overlay>

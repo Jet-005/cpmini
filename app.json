@@ -2,15 +2,29 @@
   "pages": [
     "pages/index/index",
     "pages/my/index",
-    "manager/category/index",
-    "manager/category/new",
-    "manager/manaDishes/index",
-    "manager/manaDishes/detail",
-    "manager/orderMana/detail",
-    "user/cart/index",
-    "user/dishes/detail/index",
-    "user/dishes/comment/index",
+    "pages/orderMana/index"
   ],
+  "subpackages": [{
+    "root": "commonPage",
+    "pages": [
+      "noConnect/index"
+    ]
+  }, {
+    "root": "manager",
+    "pages": [
+      "category/new",
+      "manaDishes/index",
+      "manaDishes/detail",
+      "orderMana/detail"
+    ]
+  }, {
+    "root": "user",
+    "pages": [
+      "cart/index",
+      "dishes/detail/index",
+      "dishes/comment/index"
+    ]
+  }],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -22,8 +36,7 @@
     "color": "#6e6d6b",
     "selectedColor": "#e64340",
     "backgroundColor": "#fff",
-    "list": [
-      {
+    "list": [{
         "pagePath": "pages/index/index",
         "text": "首页"
       },

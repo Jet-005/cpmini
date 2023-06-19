@@ -1,4 +1,6 @@
 // manager/category/new.js
+const API = require('../../api/mana')
+const utils = require('../../utils/util')
 Page({
 
   /**
@@ -6,14 +8,19 @@ Page({
    */
   data: {
     name: "",
-    errorMsg: ""
+    errorMsg: "",
+    id: null,
+    showError: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    if (options.id) {
+      this.data.id = options.id
+      this.getCategoryInfo()
+    }
   },
 
   /**
@@ -64,10 +71,55 @@ Page({
   onShareAppMessage() {
 
   },
-  doSaveCategories() {
+  onChange(e) {
+    this.setData({
+      name: e.detail
+    })
+
+  },
+  doSave() {
+    console.log(this.data.name)
+    if (!this.data.name) {
+      this.setData({
+        showError: true,
+        errorMsg: "请输入分类名称"
+      })
+      return
+    }
+    this.doSaveCategories()
+  },
+  async doSaveCategories() {
     const {
-      name
+      name,
+      id
     } = this.data
-    wx.navigateBack()
+    const sendData = {
+      name
+    }
+    if (id) {
+      sendData.id = id
+    }
+    const res = await API[id ? 'editCategories' : 'saveCategories'](sendData)
+    if (res.success) {
+      utils.successToast()
+      wx.navigateBack()
+    } else {
+      return utils.errToast(res.msg)
+    }
+
+  },
+  async getCategoryInfo() {
+    const res = await API.getCategoryInfo()
+    if (res.success) {
+      this.setData({
+        name: res.data.name
+      })
+    } else {
+      return utils.errToast(res.msg)
+    }
+  },
+  async doEditCategories() {},
+  formSubmit(e) {
+    console.log(e, 'formSubmit')
   }
 })

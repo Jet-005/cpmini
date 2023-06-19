@@ -1,7 +1,7 @@
 page {
-  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
-    Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica,
+    Segoe UI, Arial, Roboto, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft Yahei", sans-serif;
   background-color: #f7f8f7;
 }
 
@@ -53,7 +53,7 @@ input {
 .com_text_btn .van-button {
   /* background-color: transparent; */
   border: none;
-  color: #1582FC;
+  color: #1582fc;
   justify-content: center;
   align-items: center;
 }
@@ -65,7 +65,7 @@ input {
 }
 
 .com_nums_item .num {
-  color: #0F100F;
+  color: #0f100f;
 }
 
 .com_block_box {
@@ -83,7 +83,7 @@ input {
 }
 
 .com_block_box .nums {
-  background-color: #F7F8F7;
+  background-color: #f7f8f7;
   border-radius: 4px;
   height: 42px;
   width: 100%;
@@ -102,4 +102,22 @@ input {
   padding-left: 20px;
   padding-right: 20px;
   box-sizing: border-box;
+}
+.has_shadow {
+  box-shadow: 0px 2px 6px 0px rgba(1, 32, 42, 0.1);
+}
+.com_flex_box {
+  display: flex;
+  justify-content: center;
+}
+.mask {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  background-color: black;
+  opacity: 0.7;
+  z-index: 100;
 }

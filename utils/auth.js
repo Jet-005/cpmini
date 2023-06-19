@@ -71,7 +71,7 @@ async function login() {
   } = await API.login(sendData)
   if (data && utils.notEmptyObj(data)) {
     wx.setStorageSync('token', data.token)
-    wx.setStorageSync('role', data.role || 0) // role-用来分辨角色
+    wx.setStorageSync('role', data.role) // role-用来分辨角色
     wx.setStorageSync('uId', data._id || '') // userId-用来查询用户数据
     wx.setStorageSync('cId', data.connectId || '') // connectId-用来查询配对用户信息
   }
@@ -82,8 +82,6 @@ async function authorize() {
   return new Promise((resolve, reject) => {
     wx.login({
       success: function (res) {
-        const code = res.code
-        let referrer = '' // 推荐人
         let referrer_storge = wx.getStorageSync('referrer');
         if (referrer_storge) {
           referrer = referrer_storge;

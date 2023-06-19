@@ -1,4 +1,8 @@
-<view class="not_login_box">
+<view class="not_login_box" wx:if="{{ !hasRole }}">
   <login></login>
 </view>
-<view ></view>
+<view wx:else>
+  <user wx:if="{{curRole === 'user'}}"></user>
+  <manager wx:else>
+  </manager>
+</view>

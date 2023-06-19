@@ -1,164 +1,19 @@
-const APP = getApp()
-const AUTH = require('../../utils/auth')
-const API = require('../../api/index')
+const utils = require('../../utils/util')
+const API = require('../../api/mana')
 
 Page({
   data: {
-    role: 0, // 0-用户,1-商家,2-未配对
-    page: 1,
-    shopIsOpened: false, // 是否营业
-    mainActiveIndex: 0,
-    activeId: [],
-    categories: [],
-    goods: [],
-    showShare: false
+    hasRole: false,
+    curRole: 'mana'
   },
   onLoad: function (e) {
-    let mod = 0 // 0 普通模式； 1 扫码点餐模式
-    if (e && e.scene) {
-      const scene = decodeURIComponent(e.scene) // 处理扫码进商品详情页面的逻辑
-      if (scene && scene.split(',').length == 3) {
-        // 扫码点餐
-        const scanDining = {}
-        scene.split(',').forEach(ele => {
-          scanDining[ele.split('=')[0]] = ele.split('=')[1]
-        })
-        wx.setStorageSync('scanDining', scanDining)
-        this.setData({
-          scanDining: scanDining
-        })
-        this.cyTableToken(scanDining.id, scanDining.key)
-        mod = 1
-      } else {
-        wx.removeStorageSync('scanDining')
-      }
-    }
-    if (wx.getStorageSync('scanDining')) {
-      mod = 1
-      this.setData({
-        scanDining: wx.getStorageSync('scanDining')
-      })
-      wx.hideTabBar()
-    }
-    if (e.share_goods_id) {
-      this.data.share_goods_id = e.share_goods_id
-      this._showGoodsDetailPOP(e.share_goods_id)
-    }
-    if (e.share_pingtuan_open_id) {
-      this.data.share_pingtuan_open_id = e.share_pingtuan_open_id
-    } else {
-      this._showCouponPop()
-    }
-    // 静默式授权注册/登陆
-    // if (mod == 0) {
-    //   AUTH.checkHasLogined().then(isLogin => {
-    //     if (isLogin) {
-    //       AUTH.bindSeller()
-    //     } else {
-    //       AUTH.authorize().then(res => {
-    //         AUTH.bindSeller()
-    //       })
-    //     }
-    //   })
-    // }
-    // 设置标题
-    const mallName = wx.getStorageSync('mallName')
-    if (mallName) {
-      wx.setNavigationBarTitle({
-        title: mallName
-      })
-    }
-    APP.configLoadOK = () => {
-      const mallName = wx.getStorageSync('mallName')
-      if (mallName) {
-        wx.setNavigationBarTitle({
-          title: mallName
-        })
-      }
-    }
-    // 读取默认配送方式
-    let peisongType = wx.getStorageSync('peisongType')
-    if (!peisongType) {
-      peisongType = 'zq'
-      wx.setStorageSync('peisongType', peisongType)
-    }
+    const role = utils.getRole()
     this.setData({
-      peisongType
+      curRole: role,
+      hasRole: role ? true : false
     })
-    // 读取最近的门店数据
-    // this.getCategories()    
-    this.noticeLastOne()
-    this.banners()
-  },
-  onShow: function () {
-    this.shippingCarInfo()
-    const refreshIndex = wx.getStorageSync('refreshIndex')
-    if (refreshIndex) {
-      this.getshopInfo()
-      wx.removeStorageSync('refreshIndex')
-    }
-  },
-  async cyTableToken(tableId, key) {
-
-    wx.hideTabBar()
-    wx.setStorageSync('uid', res.data.uid)
-    wx.setStorageSync('token', res.data.token)
-  },
-  async getshopInfo() {
-    let shopInfo = wx.getStorageSync('shopInfo')
-    if (shopInfo) {
-      this.setData({
-        shopInfo: shopInfo,
-        shopIsOpened: this.checkIsOpened(shopInfo.openingHours)
-      })
-      const shop_goods_split = wx.getStorageSync('shop_goods_split')
-      if (shop_goods_split == '1') {
-        // 商品需要区分门店
-        wx.setStorageSync('shopIds', shopInfo.id) // 当前选择的门店
-        this.getGoodsList()
-      }
-      return
-    }
-    wx.getLocation({
-      type: 'wgs84', //wgs84 返回 gps 坐标，gcj02 返回可用于 wx.openLocation 的坐标
-      success: (res) => {
-        // console.log(res)
-        this.data.latitude = res.latitude
-        this.data.longitude = res.longitude
-        this.fetchShops(res.latitude, res.longitude, '')
-      },
-      fail(e) {
-        if (e.errMsg.indexOf('fail auth deny') != -1) {
-          AUTH.checkAndAuthorize('scope.userLocation')
-        } else {
-          wx.showModal({
-            title: '出错了~',
-            content: e.errMsg,
-            showCancel: false
-          })
-        }
-      }
-    })
-  },
-  async fetchShops(latitude, longitude, kw) {
-
-  },
-  async _showCouponPop() {
-    const a = wx.getStorageSync('has_pop_coupons')
-    if (a) {
-      return
-    }
-    // 检测是否需要弹出优惠券的福袋
-
-  },
-  changePeisongType(e) {
-    const peisongType = e.currentTarget.dataset.type
-    this.setData({
-      peisongType
-    })
-    wx.setStorage({
-      data: peisongType,
-      key: 'peisongType',
+    this.getTabBar().setData({
+      show: true
     })
   },
   // 获取分类
@@ -199,10 +54,6 @@ Page({
     }
     // this.processBadge()
   },
-  _onReachBottom() {
-    this.data.page++
-    this.getGoodsList()
-  },
   categoryNavClick(e) {
     this.setData({
       mainActiveIndex: e.detail || 0
@@ -230,27 +81,6 @@ Page({
     // this.getGoodsList()
 
 
-  },
-  async shippingCarInfo() {
-
-    // this.processBadge()
-  },
-  showCartPop() {
-    if (this.data.scanDining) {
-      // 扫码点餐，前往购物车页面
-      wx.navigateTo({
-        url: '/pages/cart/index',
-      })
-    } else {
-      this.setData({
-        showCartPop: !this.data.showCartPop
-      })
-    }
-  },
-  hideCartPop() {
-    this.setData({
-      showCartPop: false
-    })
   },
   async addCart1(e) {
     const token = wx.getStorageSync('token')

@@ -1,5 +1,6 @@
 // components/login/index.js
-const AUTH = require('utils/auth')
+const AUTH = require('../../utils/auth')
+const utils = require('../../utils/util')
 
 Component({
   /**
@@ -13,24 +14,41 @@ Component({
    * 组件的初始数据
    */
   data: {
-
+    show: true
   },
-
+  /* 组件的生命周期 */
+  lifetimes: {
+    created() {
+      this.getTabBar().setData({
+        show: false
+      })
+    }
+  },
   /**
    * 组件的方法列表
    */
   methods: {
-    login() {
+    doLogin() {
       AUTH.checkHasLogined().then(async (isLogined) => {
-        if (isLogined) {
-        } else {
-          const result = await AUTH.login()
-          if (!result.connectId) {
+        let curRole = isLogined ? utils.getRole() : ''
+        if (!isLogined) {
+          const role = await AUTH.login().role
+          curRole = role ? role : ''
+          // 没有角色就跳转至未连接页
+          if (!role) {
             wx.redirectTo({
-              url: 'pages/noConnect/index'
+              url: '../../commonPage/noConnect/index'
             })
           }
         }
+        this.setData({
+          show: false
+        })
+        if (!curRole) return
+        this.getTabBar().setData({
+          show: true,
+          curRole
+        })
       })
     }
   }

@@ -1,4 +1,4 @@
-// manager/category/index.js
+// pages/orderMana/index.js
 Page({
 
   /**
@@ -62,23 +62,5 @@ Page({
    */
   onShareAppMessage() {
 
-  },
-  newCategories() {
-    wx.navigateTo({
-      url: "./new"
-    })
-  },
-  editCategories() {
-    const {
-      id
-    } = this.data
-    wx.navigateTo({
-      url: `./new?id=${id}`
-    })
-  },
-  manageDishes() {
-    wx.navigateTo({
-      url: `../manaDishes/index`
-    })
   }
 })
