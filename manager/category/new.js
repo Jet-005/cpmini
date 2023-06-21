@@ -18,7 +18,9 @@ Page({
    */
   onLoad(options) {
     if (options.id) {
-      this.data.id = options.id
+      this.setData({
+        id: options.id
+      })
       this.getCategoryInfo()
     }
   },
@@ -109,7 +111,11 @@ Page({
 
   },
   async getCategoryInfo() {
-    const res = await API.getCategoryInfo()
+    const {
+      id
+    } = this.data
+    const res = await API.getCategoryInfo(id)
+    console.log(res)
     if (res.success) {
       this.setData({
         name: res.data.name

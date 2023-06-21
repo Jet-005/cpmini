@@ -1,18 +1,26 @@
 // manager/manaDishes/index.js
+const API = require('../../api/mana')
+const utils = require('../../utils/util')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    cateId: '',
+    page: 1,
+    disheds:[]
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 生命周期函数--监听页面加载 
    */
   onLoad(options) {
-
+    this.setData({
+      id: options.id
+    })
+    this.getDisheds()
   },
 
   /**
@@ -76,6 +84,19 @@ Page({
   },
   doChangeStatus(e) {
     const id = e.currentTarget.dataset.id
-    
-  }
+  },
+  // 获取分类下的菜品
+  async getDisheds() {
+    const {
+      page,
+      cateId
+    } = this.data
+    const res = await API.getDishedsByCategory(cateId, page)
+    if (!res.success) {
+      return utils.errToast(res.msg)
+    }
+    this.setData({
+      disheds: res.data,
+    })
+  },
 })

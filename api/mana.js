@@ -16,14 +16,20 @@ const saveCategories = (data = {}) => {
 // 编辑分类
 const editCategories = (data = {}) => {
   return request.post(
-    '/category/edit',
+    '/category/update',
     data
   );
 }
 const getCategoryInfo = (id) => {
   return request.get(
-    '/category/getInfo', {
-      id
+    `/category/get/${id}`
+  );
+}
+const getDishedsByCategory = (cateId, page) => {
+  return request.post(
+    'dished/list', {
+      page,
+      cateId
     }
   );
 }
@@ -31,5 +37,5 @@ module.exports = {
   getCategories: getCategories,
   saveCategories: saveCategories,
   getCategoryInfo: getCategoryInfo,
-  editCategories: editCategories
+  editCategories: editCategories,getDishedsByCategory
 }

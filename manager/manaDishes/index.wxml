@@ -7,7 +7,7 @@
 </view>
 <view class="manaDishes_box com_layout">
   <!-- wx:for="" -->
-  <view class="com_block_box">
+  <view class="com_block_box" wx:for="">
     <view class="title">
       111
     </view>

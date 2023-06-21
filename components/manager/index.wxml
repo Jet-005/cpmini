@@ -5,17 +5,20 @@
     <text>当前分类数量：<text class="num">{{categories.length}}</text></text>
   </view>
   <view class="categories_box">
-    <view wx:if="{{categories.length}}" class="com_block_box" wx:for="{{categories}}" wx:key="id">
-      <view class="title">
-        {{item.name}}
+    <scroll-view scroll-y>
+      <view wx:if="{{categories.length}}" class="com_block_box" wx:for="{{categories}}" wx:key="id">
+        <view class="title">
+          {{item.name}}
+        </view>
+        <view class="com_nums_item">
+          当前菜品总数:<text class="num">{{item.dishesNum || 0}}</text>
+        </view>
+        <view class="buttons">
+          <van-button class="com_text_btn" data-id="{{item._id}}" bind:click="manageDishes">菜品管理</van-button>
+          <van-button class="com_text_btn" data-id="{{item._id}}" bind:click="editCategories">编辑分类</van-button>
+        </view>
       </view>
-      <view class="com_nums_item">
-        当前菜品总数:<text class="num">{{item.dishesNum}}</text>
-      </view>
-      <view class="buttons">
-        <van-button class="com_text_btn" bind:click="manageDishes">菜品管理</van-button>
-        <van-button class="com_text_btn" bind:click="editCategories">编辑分类</van-button>
-      </view>
-    </view>
+    </scroll-view>
+
   </view>
 </view>

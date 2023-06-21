@@ -3,6 +3,9 @@ const API = require('../../api/mana')
 const utils = require('../../utils/util')
 
 Component({
+  options: {
+    styleIsolation: 'shared'
+  },
   /**
    * 组件的属性列表
    */
@@ -19,12 +22,18 @@ Component({
   },
   lifetimes: {
     created: function () {
-      this.getCategories()
+      // this.getCategories()
       // 在组件实例进入页面节点树时执行
     },
     detached: function () {
       // 在组件实例被从页面节点树移除时执行
     },
+  },
+  pageLifetimes: {
+    show() {
+      // 组件所在页面的show生命周期
+      this.getCategories()
+    }
   },
   /**
    * 组件的方法列表
@@ -35,17 +44,20 @@ Component({
         url: "../../manager/category/new"
       })
     },
-    editCategories() {
+    editCategories(e) {
       const {
         id
-      } = this.data
+      } = e.currentTarget.dataset
       wx.navigateTo({
         url: `../../manager/category/new?id=${id}`
       })
     },
-    manageDishes() {
+    manageDishes(e) {
+      const {
+        id
+      } = e.currentTarget.dataset
       wx.navigateTo({
-        url: `../../manager/manaDishes/index`
+        url: `../../manager/manaDishes/index?id=${id}`
       })
     },
     // 获取分类
