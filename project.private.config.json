@@ -72,13 +72,6 @@
           "query": "",
           "launchMode": "default",
           "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "manager/category/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
         }
       ]
     }

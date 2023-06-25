@@ -5,9 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
+    categoryName: '',
     form: {
       name: "",
+      price: '',
       isFeatured: false,
+    },
+    showError: {
+      name: false,
+      price: false,
+    },
+    errorMsg: {
+      name: "",
+      price: ""
     }
   },
 
@@ -15,7 +25,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    const {
+      cateId,
+      name,
+      id
+    } = options
+    const {
+      form
+    } = this.data
+    form.cateId = cateId
+    form.id = id || null
+    this.setData({
+      form,
+      categoryName: name
+    })
   },
 
   /**
@@ -65,5 +88,49 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  doSave() {
+    const requiredFields = ['name', 'price']
+    const {
+      showError,
+      errorMsg,
+      form
+    } = this.data
+    const errMsg = {
+      name: "请填写菜品名称",
+      price: "请填写菜品价格"
+    };
+    for (let i of requiredFields) {
+      showError[i] = !form[i]
+      errorMsg[i] = !form[i] ? errMsg[i] : ''
+      if (!hasError) break
+    }
+    this.setData({
+      showError,
+      errorMsg
+    })
+    console.log(Object.values(showError))
+    // if (Object.values(showError).includes(false)) return
+    // this.doSaveDisehd()
+
+  },
+  async doSaveDisehd() {
+    const {
+      name,
+      id
+    } = this.data
+    const sendData = {
+      name
+    }
+    if (id) {
+      sendData.id = id
+    }
+    const res = await API[id ? 'editDished' : 'saveDished'](sendData)
+    if (res.success) {
+      utils.successToast()
+      wx.navigateBack()
+    } else {
+      return utils.errToast(res.msg)
+    }
   }
 })

@@ -9,16 +9,22 @@ Page({
    */
   data: {
     cateId: '',
+    cateName: "",
     page: 1,
-    disheds:[]
+    disheds: []
   },
 
   /**
    * 生命周期函数--监听页面加载 
    */
   onLoad(options) {
+    const {
+      id,
+      name
+    } = options
     this.setData({
-      id: options.id
+      cateId: id,
+      cateName: name
     })
     this.getDisheds()
   },
@@ -72,15 +78,24 @@ Page({
 
   },
   newManaDishes() {
+    this.gotoDetail()
+  },
+  gotoDetail(dishedId = null) {
+    const {
+      cateId,
+      cateName
+    } = this.data
+    let url = `../manaDishes/detail?cateId=${cateId}&name=${cateName}`
+    if (dishedId) {
+      url = url + '&id=' + dishedId
+    }
     wx.navigateTo({
-      url: '../manaDishes/detail',
+      url
     })
   },
   manageDishesDetail(e) {
     const id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: `../manaDishes/detail?id=${id}`,
-    })
+    this.gotoDetail(id)
   },
   doChangeStatus(e) {
     const id = e.currentTarget.dataset.id

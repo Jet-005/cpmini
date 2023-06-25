@@ -1,4 +1,5 @@
 const utils = require('../../utils/util')
+const AUTH = require('../../utils/auth')
 const API = require('../../api/mana')
 
 Page({
@@ -6,14 +7,47 @@ Page({
     hasRole: false,
     curRole: 'mana'
   },
-  onLoad: function (e) {
-    const role = utils.getRole()
+  onLoad: async function (e) {
+    const isLogined = await AUTH.checkHasLogined()
+    let curRole = utils.getRole()
+    let hasRole = false
+    let showTabBar = true
+    let showLogin = false
+    if (isLogined) {
+      this.getTabBar().setData({
+        show: true,
+        curRole: curRole
+      })
+      hasRole = true
+    } else {
+      showTabBar = false
+      showLogin = true
+    }
+    this.selectComponent('#loginCompoentRef').setData({
+      show: !hasRole
+    })
     this.setData({
-      curRole: role,
-      hasRole: role ? true : false
+      hasRole,
+      curRole,
+      show: showLogin
     })
     this.getTabBar().setData({
-      show: true
+      show: showTabBar,
+      curRole: curRole
+    })
+
+  },
+  doLogin(obj) {
+    const {
+      role
+    } = obj
+    this.setData({
+      hasRole: true,
+      curRole: role
+    })
+    this.getTabBar().setData({
+      show: true,
+      curRole: role
     })
   },
   // 获取分类

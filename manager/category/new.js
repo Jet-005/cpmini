@@ -80,7 +80,6 @@ Page({
 
   },
   doSave() {
-    console.log(this.data.name)
     if (!this.data.name) {
       this.setData({
         showError: true,

@@ -19,10 +19,11 @@ Component({
   data: {
     page: 1,
     categories: [],
+    total: 0
   },
   lifetimes: {
     created: function () {
-      // this.getCategories()
+      this.getCategories()
       // 在组件实例进入页面节点树时执行
     },
     detached: function () {
@@ -54,10 +55,11 @@ Component({
     },
     manageDishes(e) {
       const {
-        id
+        id,
+        name
       } = e.currentTarget.dataset
       wx.navigateTo({
-        url: `../../manager/manaDishes/index?id=${id}`
+        url: `../../manager/manaDishes/index?id=${id}&name=${name}`
       })
     },
     // 获取分类
@@ -68,6 +70,7 @@ Component({
       }
       this.setData({
         categories: res.data,
+        total: res.count
       })
     },
   }

@@ -27,7 +27,7 @@ const getCategoryInfo = (id) => {
 }
 const getDishedsByCategory = (cateId, page) => {
   return request.post(
-    'dished/list', {
+    '/dished/list', {
       page,
       cateId
     }

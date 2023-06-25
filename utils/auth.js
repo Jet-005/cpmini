@@ -69,12 +69,6 @@ async function login() {
   const {
     data
   } = await API.login(sendData)
-  if (data && utils.notEmptyObj(data)) {
-    wx.setStorageSync('token', data.token)
-    wx.setStorageSync('role', data.role) // role-用来分辨角色
-    wx.setStorageSync('uId', data._id || '') // userId-用来查询用户数据
-    wx.setStorageSync('cId', data.connectId || '') // connectId-用来查询配对用户信息
-  }
   return data
 }
 
@@ -103,7 +97,9 @@ async function authorize() {
 
 function loginOut() {
   wx.removeStorageSync('token')
-  wx.removeStorageSync('uid')
+  wx.removeStorageSync('uId')
+  wx.removeStorageSync('cId')
+  wx.removeStorageSync('role')
 }
 
 async function checkAndAuthorize(scope) {

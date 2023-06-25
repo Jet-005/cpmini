@@ -1,5 +1,5 @@
 <view class="not_login_box" wx:if="{{ !hasRole }}">
-  <login></login>
+  <login bind:login="doLogin" id="loginCompoentRef"></login>
 </view>
 <view wx:else>
   <user wx:if="{{curRole === 'user'}}"></user>

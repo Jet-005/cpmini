@@ -1,21 +1,23 @@
 const config = require('../config.js')
 const baseUrl = config.subDomain
-// const AUTH = require('./auth.js')
-const token = wx.getStorageSync('token')
-const userId = wx.getStorageSync('uId')
-
+// const token = wx.getStorageSync('token')
+// const userId = wx.getStorageSync('uId')
 import Toast from '@vant/weapp/toast/toast';
-const request = async (url, method, data = {}, headers = {
-  'Authorization': 'Bearer ' + token,
-  uid: userId || ''
-}) => {
+const request = async (url, method, data = {}, headers = {}) => {
+  const token = wx.getStorageSync('token')
+  const userId = wx.getStorageSync('uId')
   // if (await AUTH.checkHasLogined()) {
   return new Promise((resolve, reject) => {
+    const header = {
+      ...headers,
+      'Authorization': 'Bearer ' + token,
+      uid: userId || ''
+    }
     wx.request({
       url: baseUrl + url,
       method,
       data,
-      header: headers,
+      header: header,
       dataType: 'json',
       success: (res) => {
         const resData = res.data
@@ -25,6 +27,19 @@ const request = async (url, method, data = {}, headers = {
             message: resData.msg,
             duration: 3000
           })
+          switch (resData.code) {
+            case 401: {
+              wx.removeStorageSync('token')
+              wx.removeStorageSync('uId')
+              wx.removeStorageSync('cId')
+              wx.removeStorageSync('role')
+              wx.redirectTo({
+                url: '/pages/index/index',
+              })
+              break
+            }
+          }
+
         }
         resolve(resData)
       },

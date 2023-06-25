@@ -1,13 +1,13 @@
 <!--manager/manaDishes/detail.wxml-->
-<van-field value="{{ form.category }}" label="菜品分类" placeholder="分类名称" border="{{ false }}" />
-<van-field value="{{ form.name }}" required label="菜品名称" error error-message="{{ errorMsg }}" placeholder="菜品名称" border="{{ false }}" />
-<van-field value="{{ form.price }}" required label="菜品价格" error error-message="{{ errorMsg }}" placeholder="菜品价格" border="{{ false }}" />
+<van-field value="{{ categoryName }}" label="菜品分类" placeholder="分类名称" border="{{ false }}" disabled="{{true}}" />
+<van-field value="{{ form.name }}" required label="菜品名称" error="{{showError.name}}" error-message="{{ errorMsg.name }}" placeholder="菜品名称" border="{{ false }}" />
+<van-field value="{{ form.price }}" required label="菜品价格" error="{{showError.price}}" error-message="{{ errorMsg.price }}" placeholder="菜品价格" border="{{ false }}" />
 <van-cell title="是否为特色菜品" value="">
   <van-switch checked="{{ form.isFeatured }}" bind:change="onChange" />
 </van-cell>
 <van-field value="{{ form.price }}" label="商品介绍" placeholder="请输入简短的商品介绍" border="{{ false }}" />
-<van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="5"/>
+<van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="5" />
 
 <view class="com_btn_footer">
-  <van-button color="#1890FF" block bind:click="doSaveCategories">保存</van-button>
+  <van-button color="#1890FF" block bind:click="doSave">保存</van-button>
 </view>

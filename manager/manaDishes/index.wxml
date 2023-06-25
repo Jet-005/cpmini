@@ -7,16 +7,16 @@
 </view>
 <view class="manaDishes_box com_layout">
   <!-- wx:for="" -->
-  <view class="com_block_box" wx:for="">
+  <view class="com_block_box" wx:for="{{disheds}}" wx:key="_id">
     <view class="title">
-      111
+      {{item.name}}
     </view>
     <view class="com_nums_item">
-      当前菜品总数:<text class="num">{{1}}</text>
+      当前菜品总数:<text class="num">{{item.nums}}</text>
     </view>
     <view class="buttons">
-      <van-button class="com_text_btn" bind:click="manageDishesDetail">菜品详情</van-button>
-      <van-button class="com_text_btn" bind:click="doChangeStatus">{{'上线'}}</van-button>
+      <van-button class="com_text_btn" data-id="{{item._id}}" bind:click="manageDishesDetail">菜品详情</van-button>
+      <van-button class="com_text_btn" data-id="{{item._id}}" bind:click="doChangeStatus">{{item.isOnline === 1 ? '下线' : '上线'}}</van-button>
     </view>
   </view>
 </view>
