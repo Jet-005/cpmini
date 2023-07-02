@@ -1,4 +1,6 @@
 // manager/manaDishes/detail.js
+const API = require('../../api/mana')
+
 Page({
 
   /**
@@ -89,6 +91,16 @@ Page({
   onShareAppMessage() {
 
   },
+  onChange(e) {
+    console.log(e.detail)
+    const {
+      form
+    } = this.data
+    form.isFeatured = e.detail
+    this.setData({
+      form
+    })
+  },
   doSave() {
     const requiredFields = ['name', 'price']
     const {
@@ -103,29 +115,24 @@ Page({
     for (let i of requiredFields) {
       showError[i] = !form[i]
       errorMsg[i] = !form[i] ? errMsg[i] : ''
-      if (!hasError) break
+      // if (!hasError) break
     }
-    this.setData({
-      showError,
-      errorMsg
-    })
-    console.log(Object.values(showError))
+    // this.setData({
+    //   showError,
+    //   errorMsg
+    // })
+    // console.log(Object.values(showError))
     // if (Object.values(showError).includes(false)) return
-    // this.doSaveDisehd()
+    this.doSaveDisehd()
 
   },
   async doSaveDisehd() {
     const {
-      name,
-      id
+      form
     } = this.data
-    const sendData = {
-      name
-    }
-    if (id) {
-      sendData.id = id
-    }
-    const res = await API[id ? 'editDished' : 'saveDished'](sendData)
+    const sendData = form
+    
+    const res = await API[sendData.id ? 'editDished' : 'addDished'](sendData)
     if (res.success) {
       utils.successToast()
       wx.navigateBack()

@@ -3,7 +3,7 @@
 <van-field value="{{ form.name }}" required label="菜品名称" error="{{showError.name}}" error-message="{{ errorMsg.name }}" placeholder="菜品名称" border="{{ false }}" />
 <van-field value="{{ form.price }}" required label="菜品价格" error="{{showError.price}}" error-message="{{ errorMsg.price }}" placeholder="菜品价格" border="{{ false }}" />
 <van-cell title="是否为特色菜品" value="">
-  <van-switch checked="{{ form.isFeatured }}" bind:change="onChange" />
+  <van-switch checked="{{ form.isFeatured }}" />
 </van-cell>
 <van-field value="{{ form.price }}" label="商品介绍" placeholder="请输入简短的商品介绍" border="{{ false }}" />
 <van-uploader file-list="{{ fileList }}" deletable="{{ true }}" max-count="5" />

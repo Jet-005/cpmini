@@ -11,7 +11,7 @@
           {{item.name}}
         </view>
         <view class="com_nums_item">
-          当前菜品总数:<text class="num">{{item.dishesNum || 0}}</text>
+          当前菜品总数:<text class="num">{{item.dishedIds.length || 0}}</text>
         </view>
         <view class="buttons">
           <van-button class="com_text_btn" data-id="{{item._id}}" data-name="{{item.name}}" bind:click="manageDishes">菜品管理</van-button>

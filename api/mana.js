@@ -33,9 +33,18 @@ const getDishedsByCategory = (cateId, page) => {
     }
   );
 }
+const editDished = (data) => {
+  return request.post('/dished/update', data)
+}
+const addDished = (data) => {
+  return request.post('/dished/save', data)
+}
 module.exports = {
   getCategories: getCategories,
   saveCategories: saveCategories,
   getCategoryInfo: getCategoryInfo,
-  editCategories: editCategories,getDishedsByCategory
+  editCategories: editCategories,
+  getDishedsByCategory,
+  editDished,
+  addDished
 }
