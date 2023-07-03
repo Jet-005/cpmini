@@ -11,7 +11,7 @@ Page({
     cateId: '',
     cateName: "",
     page: 1,
-    disheds: []
+    total: 0
   },
 
   /**
@@ -26,7 +26,6 @@ Page({
       cateId: id,
       cateName: name
     })
-    this.getDisheds()
   },
 
   /**
@@ -40,7 +39,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.getDisheds()
   },
 
   /**
@@ -97,8 +96,20 @@ Page({
     const id = e.currentTarget.dataset.id
     this.gotoDetail(id)
   },
-  doChangeStatus(e) {
-    const id = e.currentTarget.dataset.id
+  async doChangeStatus(e) {
+    const {
+      id,
+      status
+    } = e.currentTarget.dataset
+    if (isNaN(status)) return utils.errToast(
+      "操作失败,请重新操作"
+    )
+
+    const res = await API.changeDishedStatus(id, status === 1 ? 0 : 1)
+    if (res.success) {
+      this.getDisheds()
+      return utils.successToast()
+    }
   },
   // 获取分类下的菜品
   async getDisheds() {
@@ -112,6 +123,7 @@ Page({
     }
     this.setData({
       disheds: res.data,
+      total: res.count
     })
   },
 })

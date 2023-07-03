@@ -1,7 +1,7 @@
 <!--manager/manaDishes/index.wxml-->
 <view class="manage_header">
   <view class="com_nums_item">
-    <text>{{}}菜品数量<text class="num">{{1}}</text></text>
+    <text>{{cateName}} 菜品数量<text class="num">{{total}}</text></text>
   </view>
   <van-button class="com_text_btn" block icon="add-o" bind:click="newManaDishes">新增</van-button>
 </view>
@@ -12,11 +12,11 @@
       {{item.name}}
     </view>
     <view class="com_nums_item">
-      当前菜品总数:<text class="num">{{item.nums}}</text>
+      <text class="num">{{item.price || 0}}</text>
     </view>
     <view class="buttons">
       <van-button class="com_text_btn" data-id="{{item._id}}" bind:click="manageDishesDetail">菜品详情</van-button>
-      <van-button class="com_text_btn" data-id="{{item._id}}" bind:click="doChangeStatus">{{item.isOnline === 1 ? '下线' : '上线'}}</van-button>
+      <van-button class="com_text_btn" data-id="{{item._id}}" data-status ="{{item.isOnline}}" bind:click="doChangeStatus">{{item.isOnline === 1 ? '下线' : '上线'}}</van-button>
     </view>
   </view>
 </view>

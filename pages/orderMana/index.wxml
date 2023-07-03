@@ -1,2 +1,7 @@
 <!--pages/orderMana/index.wxml-->
-<text>pages/orderMana/index.wxml</text>
+<van-search value="{{ searchValues }}" placeholder="请输入订单编号/商品名称" />
+<van-tabs active="{{ active }}" animated bind:click="onClick">
+  <van-tab title="全部"></van-tab>
+  <van-tab title="待接单"></van-tab>
+  <van-tab title="已完成"></van-tab>
+</van-tabs>

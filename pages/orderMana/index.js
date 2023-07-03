@@ -1,11 +1,15 @@
 // pages/orderMana/index.js
+const API = require('../../api/order')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    searchValues: '',
+    active: 0,
+    page: 1
   },
 
   /**
@@ -26,7 +30,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.loadList()
   },
 
   /**
@@ -62,5 +66,27 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+  onClick(e) {
+    const {
+      index,
+    } = e.detail
+    this.setData({
+      active: index
+    })
+    this.loadList()
+  },
+  async loadList() {
+    const {
+      active,
+      searchValues,
+      page
+    } = this.data
+    const sendData = {
+      status: active,
+      page
+    }
+    searchValues && (sendData.search = searchValues)
+    const res = await API.getOrderList(page, sendData)
   }
 })

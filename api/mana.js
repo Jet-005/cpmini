@@ -39,6 +39,13 @@ const editDished = (data) => {
 const addDished = (data) => {
   return request.post('/dished/save', data)
 }
+const getDished = (id) => {
+  return request.get(`/dished/get/${id}`)
+}
+const changeDishedStatus = (id, isOnline) => {
+  return request.get(`/dished/change/${id}/${isOnline}`)
+
+}
 module.exports = {
   getCategories: getCategories,
   saveCategories: saveCategories,
@@ -46,5 +53,7 @@ module.exports = {
   editCategories: editCategories,
   getDishedsByCategory,
   editDished,
-  addDished
+  addDished,
+  getDished,
+  changeDishedStatus
 }

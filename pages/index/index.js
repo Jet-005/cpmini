@@ -40,7 +40,7 @@ Page({
   doLogin(obj) {
     const {
       role
-    } = obj
+    } = obj.detail
     this.setData({
       hasRole: true,
       curRole: role

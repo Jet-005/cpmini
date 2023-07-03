@@ -1,5 +1,6 @@
 // manager/manaDishes/detail.js
 const API = require('../../api/mana')
+const utils = require('../../utils/util')
 
 Page({
 
@@ -41,6 +42,7 @@ Page({
       form,
       categoryName: name
     })
+    if (form.id) this.loadInfo()
   },
 
   /**
@@ -91,12 +93,12 @@ Page({
   onShareAppMessage() {
 
   },
-  onChange(e) {
-    console.log(e.detail)
+  doChange(e) {
     const {
       form
     } = this.data
-    form.isFeatured = e.detail
+    const fieldName = e.currentTarget.dataset.fieldname
+    form[fieldName] = e.detail
     this.setData({
       form
     })
@@ -124,18 +126,34 @@ Page({
     // console.log(Object.values(showError))
     // if (Object.values(showError).includes(false)) return
     this.doSaveDisehd()
-
   },
   async doSaveDisehd() {
     const {
       form
     } = this.data
     const sendData = form
-    
+
     const res = await API[sendData.id ? 'editDished' : 'addDished'](sendData)
     if (res.success) {
       utils.successToast()
       wx.navigateBack()
+    } else {
+      return utils.errToast(res.msg)
+    }
+  },
+  async loadInfo() {
+    const {
+      form
+    } = this.data
+    const sendData = form
+    const res = await API.getDished(sendData.id)
+    if (res.success) {
+      res.data.id = sendData.id
+      this.setData({
+        form: res.data
+      })
+      // utils.successToast()
+      // wx.navigateBack()
     } else {
       return utils.errToast(res.msg)
     }
