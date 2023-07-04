@@ -50,72 +50,8 @@ Page({
       curRole: role
     })
   },
-  // 获取分类
-  async getCategories() {
-    const res = await API.getCategories()
-    if (res.code != 0) {
-      wx.showToast({
-        title: res.msg,
-        icon: 'none'
-      })
-      return
-    }
-    this.setData({
-      page: 1,
-      categories: res.data,
-      categorySelected: res.data[0]
-    })
-    if (shop_goods_split != '1') {
-      this.getGoodsList()
-    }
-  },
-  async getGoodsList() {
-    const {
-      mainActiveIndex,
-      categories
-    } = this.data
-    const curNav = categories[mainActiveIndex]
-    wx.showLoading({
-      title: '',
-    })
-
-    wx.hideLoading()
-
-    if (this.data.page == 1) {
-      this.setData({})
-    } else {
-      this.setData({})
-    }
-    // this.processBadge()
-  },
-  categoryNavClick(e) {
-    this.setData({
-      mainActiveIndex: e.detail || 0
-    });
-    // 获取商品信息
-    // this.getGoodsList()
-  },
-  categoryItemClick(e) {
-    const {
-      activeId
-    } = this.data
-    const {
-      id
-    } = e.detail
-    if (activeId.includes(id)) return // 如果已经是勾选了,无需处理 2023.05.05
-    activeId.push(id)
-    console.log(e, '=== categoryClick')
-    // const index = e.currentTarget.dataset.idx
-    // const categorySelected = this.data.categories[index]
-    // this.setData({
-    //   page: 1,
-    //   categorySelected,
-    //   scrolltop: 0
-    // })
-    // this.getGoodsList()
 
 
-  },
   async addCart1(e) {
     const token = wx.getStorageSync('token')
     const index = e.currentTarget.dataset.idx

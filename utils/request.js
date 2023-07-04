@@ -6,12 +6,15 @@ import Toast from '@vant/weapp/toast/toast';
 const request = async (url, method, data = {}, headers = {}) => {
   const token = wx.getStorageSync('token')
   const userId = wx.getStorageSync('uId')
+  const connectId = wx.getStorageSync('cId')
+
   // if (await AUTH.checkHasLogined()) {
   return new Promise((resolve, reject) => {
     const header = {
       ...headers,
       'Authorization': 'Bearer ' + token,
-      uid: userId || ''
+      uid: userId || '',
+      cId: connectId || ''
     }
     wx.request({
       url: baseUrl + url,

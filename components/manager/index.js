@@ -3,9 +3,9 @@ const API = require('../../api/mana')
 const utils = require('../../utils/util')
 
 Component({
-  options: {
-    styleIsolation: 'shared'
-  },
+  // options: {
+  //   styleIsolation: 'apply-shared',
+  // },
   /**
    * 组件的属性列表
    */

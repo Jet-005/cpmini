@@ -3,6 +3,17 @@ page {
   height: 100vh;
   display: flex;
   flex-direction: column;
+
+}
+
+.index_box,
+.components {
+  height: 100%;
+}
+
+.components {
+  display: block;
+  width: 100%;
 }
 
 .custom_vant_tree_select {

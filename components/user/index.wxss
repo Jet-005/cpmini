@@ -1,1 +1,22 @@
 /* components/user/index.wxss */
+.nav_right {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.com_tree_select {
+  height: 100%;
+}
+
+.van-tree-select {
+  height: 100% !important;
+}
+
+.content {
+  height: 50px;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

@@ -1,2 +1,13 @@
 <!--components/user/index.wxml-->
-<text>components/user/index.wxml</text>
+<van-tree-select class="com_tree_select" items="{{ categories }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ activeId }}" bind:click-nav="categoryNavClick" bind:click-item="categoryItemClick">
+  <view slot="content" wx:for="{{disheds}}" wx:key="id" class="nav_right">
+    <van-image width="70" height="70" src="{{item.covers[0]}}" />
+    <view class="content">
+      <text class="name">{{item.name}}
+      </text>
+      <text class="desc">{{item.desc}}</text>
+      <text class="price">{{item.price}}</text>
+
+    </view>
+  </view>
+</van-tree-select>

@@ -1,8 +1,8 @@
-<view class="not_login_box" wx:if="{{ !hasRole }}">
+<view class="not_login_box index_box" wx:if="{{ !hasRole }}">
   <login bind:login="doLogin" id="loginCompoentRef"></login>
 </view>
-<view wx:else>
-  <user wx:if="{{curRole === 'user'}}"></user>
-  <manager wx:else>
+<view class="index_box" wx:else>
+  <user class="components" wx:if="{{curRole === 'user'}}"></user>
+  <manager class="components" wx:else>
   </manager>
 </view>

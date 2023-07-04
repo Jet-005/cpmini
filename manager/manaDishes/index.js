@@ -1,5 +1,6 @@
 // manager/manaDishes/index.js
-const API = require('../../api/mana')
+const APIMana = require('../../api/mana')
+const APICom = require('../../api/common')
 const utils = require('../../utils/util')
 
 Page({
@@ -105,7 +106,7 @@ Page({
       "操作失败,请重新操作"
     )
 
-    const res = await API.changeDishedStatus(id, status === 1 ? 0 : 1)
+    const res = await APIMana.changeDishedStatus(id, status === 1 ? 0 : 1)
     if (res.success) {
       this.getDisheds()
       return utils.successToast()
@@ -117,7 +118,7 @@ Page({
       page,
       cateId
     } = this.data
-    const res = await API.getDishedsByCategory(cateId, page)
+    const res = await APICom.getDishedsByCategory(cateId, page)
     if (!res.success) {
       return utils.errToast(res.msg)
     }

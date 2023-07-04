@@ -2,48 +2,38 @@ const request = require('../utils/request')
 // 获取分类
 const getCategories = (page = 1, params = {}) => {
   return request.get(
-    `/category/list/${page}`,
+    `/category/mana/list/${page}`,
     params
   );
 }
 // 保存分类
 const saveCategories = (data = {}) => {
   return request.post(
-    '/category/save',
+    '/category/mana/save',
     data
   );
 }
 // 编辑分类
 const editCategories = (data = {}) => {
   return request.post(
-    '/category/update',
+    '/category/mana/update',
     data
   );
 }
 const getCategoryInfo = (id) => {
   return request.get(
-    `/category/get/${id}`
-  );
-}
-const getDishedsByCategory = (cateId, page) => {
-  return request.post(
-    '/dished/list', {
-      page,
-      cateId
-    }
+    `/category/mana/get/${id}`
   );
 }
 const editDished = (data) => {
-  return request.post('/dished/update', data)
+  return request.post('/dished/mana/update', data)
 }
 const addDished = (data) => {
-  return request.post('/dished/save', data)
+  return request.post('/dished/mana/save', data)
 }
-const getDished = (id) => {
-  return request.get(`/dished/get/${id}`)
-}
+
 const changeDishedStatus = (id, isOnline) => {
-  return request.get(`/dished/change/${id}/${isOnline}`)
+  return request.get(`/dished/mana/change/${id}/${isOnline}`)
 
 }
 module.exports = {
@@ -51,9 +41,7 @@ module.exports = {
   saveCategories: saveCategories,
   getCategoryInfo: getCategoryInfo,
   editCategories: editCategories,
-  getDishedsByCategory,
   editDished,
   addDished,
-  getDished,
   changeDishedStatus
 }

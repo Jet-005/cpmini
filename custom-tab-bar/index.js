@@ -22,13 +22,20 @@ Page({
         path: "/pages/my/index"
       }],
       user: [{
-        icon: "",
-        name: ""
+        icon: "bag-o",
+        name: "下单",
+        key: "disheds",
+        path: "/pages/my/index"
+      }, {
+        icon: "todo-list-o",
+        name: "订单",
+        key: "disheds",
+        path: "/pages/my/orderMana"
       }, {
         icon: "user-o",
         name: "个人中心",
         key: "member",
-        path: "/pages/my/index"
+        path: "/pages/my/my"
       }]
     },
     active: ""
