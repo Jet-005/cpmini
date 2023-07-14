@@ -3,6 +3,9 @@
   display: flex;
   align-items: center;
   padding-left: 10px;
+  padding: 0 15px;
+  position: relative;
+  margin-bottom: 10px;
 }
 
 .com_tree_select {
@@ -19,4 +22,20 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.icon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.like {
+  right: 30px;
+}
+
+.cart_btn {
+  position: fixed;
+  right: 10px;
+  bottom: 60px;
 }

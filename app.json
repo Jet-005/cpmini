@@ -5,26 +5,29 @@
     "pages/orderMana/index"
   ],
   "subpackages": [{
-    "root": "commonPage",
-    "pages": [
-      "noConnect/index"
-    ]
-  }, {
-    "root": "manager",
-    "pages": [
-      "category/new",
-      "manaDishes/index",
-      "manaDishes/detail",
-      "orderMana/detail"
-    ]
-  }, {
-    "root": "user",
-    "pages": [
-      "cart/index",
-      "dishes/detail/index",
-      "dishes/comment/index"
-    ]
-  }],
+      "root": "commonPage",
+      "pages": [
+        "noConnect/index"
+      ]
+    },
+    {
+      "root": "manager",
+      "pages": [
+        "category/new",
+        "manaDishes/index",
+        "manaDishes/detail",
+        "orderMana/detail"
+      ]
+    },
+    {
+      "root": "user",
+      "pages": [
+        "cart/index",
+        "dishes/detail/index",
+        "dishes/comment/index"
+      ]
+    }
+  ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -56,6 +59,9 @@
     }
   },
   "usingComponents": {
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+    "van-sticky": "@vant/weapp/sticky/index",
     "van-steps": "@vant/weapp/steps/index",
     "van-image": "@vant/weapp/image/index",
     "van-tabbar": "@vant/weapp/tabbar/index",

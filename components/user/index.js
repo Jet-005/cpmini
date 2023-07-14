@@ -53,7 +53,8 @@ Component({
     // 获取分类
     async getCategories() {
       const res = await API.getCategories()
-      res.data.forEach((e) => {
+      const resData = res.data || []
+      resData.forEach((e) => {
         e.text = e.name
         e.id = e._id
       })
@@ -71,17 +72,51 @@ Component({
         dishPage
       } = this.data
       const curNav = categories[mainActiveIndex]
-      const res = await APICom.getDishedsByCategory(curNav._id, dishPage)
-      // res.data.forEach((e) => {
-      //   e.text = e.name
-      //   e.id = e._id
-      // })
-      // curNav.children = res.data
+      const res = await API.getUserDishedsByCate(curNav._id, dishPage)
       this.setData({
         categories,
         disheds: res.data
       })
-
     },
+    handleCatch() {},
+    gotoCart() {
+      wx.navigateTo({
+        url: '../../user/cart/index',
+      })
+    },
+    onClickAdd(e) {
+      const {
+        item
+      } = e.currentTarget.dataset
+      const data = wx.getStorageSync('cart') || []
+      const info = data.find((e) => e._id === item._id)
+      if (info) {
+        info.nums++
+      } else {
+        item.nums = 1
+        data.push(item)
+      }
+
+      wx.setStorageSync('cart', data)
+    },
+    async doLike(e) {
+      const {
+        item
+      } = e.currentTarget.dataset
+      const res = await API.likeDisheds(item.isLike, item._id)
+      if (res.success) {
+        this.getGoodsList()
+      }
+    },
+    toDishedDetail(e) {
+      const {
+        id
+      } = e.currentTarget.dataset
+      let url = `../../user/dishes/detail/index?id=${id}`
+      wx.navigateTo({
+        url
+      })
+      console.log(id)
+    }
   }
 })

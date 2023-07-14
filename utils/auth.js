@@ -100,6 +100,10 @@ function loginOut() {
   wx.removeStorageSync('uId')
   wx.removeStorageSync('cId')
   wx.removeStorageSync('role')
+  const cart = wx.getStorageSync('cart') || []
+  if (cart && cart.length) {
+    wx.removeStorageSync('cart')
+  }
 }
 
 async function checkAndAuthorize(scope) {

@@ -34,7 +34,14 @@ const addDished = (data) => {
 
 const changeDishedStatus = (id, isOnline) => {
   return request.get(`/dished/mana/change/${id}/${isOnline}`)
-
+}
+const getDishedsByCategory = (cateId, page) => {
+  return request.post(
+    '/dished/mana/list', {
+      page,
+      cateId
+    }
+  );
 }
 module.exports = {
   getCategories: getCategories,
@@ -43,5 +50,6 @@ module.exports = {
   editCategories: editCategories,
   editDished,
   addDished,
-  changeDishedStatus
+  changeDishedStatus,
+  getDishedsByCategory
 }

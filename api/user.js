@@ -6,7 +6,21 @@ const getCategories = (page = 1, params = {}) => {
     params
   );
 }
-
+const getUserDishedsByCate = (cateId, page) => {
+  return request.post(
+    '/dished/user/list', {
+      page,
+      cateId
+    }
+  );
+}
+const likeDisheds = (dishedId, isLike) => {
+  return request.get(
+    `/dished/user/like/${dishedId}/${isLike}`
+  );
+}
 module.exports = {
-  getCategories
+  getCategories,
+  getUserDishedsByCate,
+  likeDisheds
 }

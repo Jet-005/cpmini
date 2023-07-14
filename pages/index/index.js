@@ -5,36 +5,25 @@ const API = require('../../api/mana')
 Page({
   data: {
     hasRole: false,
-    curRole: 'mana'
+    curRole: utils.getRole()
   },
   onLoad: async function (e) {
     const isLogined = await AUTH.checkHasLogined()
-    let curRole = utils.getRole()
-    let hasRole = false
-    let showTabBar = true
-    let showLogin = false
-    if (isLogined) {
-      this.getTabBar().setData({
-        show: true,
-        curRole: curRole
-      })
-      hasRole = true
-    } else {
-      showTabBar = false
-      showLogin = true
-    }
     this.selectComponent('#loginCompoentRef').setData({
-      show: !hasRole
+      show: !isLogined
     })
+    // const curRole = util.getRole()
     this.setData({
-      hasRole,
-      curRole,
-      show: showLogin
+      hasRole: isLogined,
+      show: !isLogined,
+      curRole: utils.getRole()
     })
     this.getTabBar().setData({
-      show: showTabBar,
-      curRole: curRole
+      show: isLogined,
+      curRole: utils.getRole()
     })
+  },
+  onShow: async function () {
 
   },
   doLogin(obj) {

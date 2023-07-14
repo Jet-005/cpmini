@@ -1,1 +1,9 @@
-/* user/cart/index.wxss */
+/* pages/cart/index.wxss */
+.cell_title {
+  display: flex;
+  align-items: center;
+}
+
+.covers {
+  margin-right: 5px;
+}

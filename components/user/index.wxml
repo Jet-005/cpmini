@@ -1,13 +1,23 @@
 <!--components/user/index.wxml-->
 <van-tree-select class="com_tree_select" items="{{ categories }}" main-active-index="{{ mainActiveIndex }}" active-id="{{ activeId }}" bind:click-nav="categoryNavClick" bind:click-item="categoryItemClick">
-  <view slot="content" wx:for="{{disheds}}" wx:key="id" class="nav_right">
-    <van-image width="70" height="70" src="{{item.covers[0]}}" />
-    <view class="content">
-      <text class="name">{{item.name}}
-      </text>
-      <text class="desc">{{item.desc}}</text>
-      <text class="price">{{item.price}}</text>
-
+  <view slot="content" wx:for="{{disheds}}" wx:key="_id">
+    <!-- bindtap="toDishedDetail" -->
+    <view data-id="{{item._id}}" class="nav_right">
+      <van-image width="70" height="70" src="{{item.covers[0]}}" />
+      <view class="content">
+        <text class="name">{{item.name}}
+        </text>
+        <text class="desc">{{item.desc}}</text>
+        <text class="price">{{item.price}}</text>
+      </view>
+      <view catchtap="handleCatch">
+        <van-icon class="icon like" name="{{item.isLike ? 'like' : 'like-o'}}" data-item="{{item}}" color="{{item.isLike ? '#F56C6C' : ''}}" bind:click="doLike" />
+        <van-icon class="icon" name="add-o" data-item="{{item}}" bind:click="onClickAdd" />
+      </view>
     </view>
+
   </view>
 </van-tree-select>
+<van-button type="primary" class="cart_btn" size="normal" plain round icon="shopping-cart-o" bind:click="gotoCart">
+  <!-- <van-icon name="shopping-cart-o" /> -->
+</van-button>

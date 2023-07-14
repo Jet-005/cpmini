@@ -1,7 +1,16 @@
-<!--user/cart/index.wxml-->
-<view class="cart_box">
-  <van-card num="2" price="2.00" desc="描述信息" title="商品标题" thumb="{{ imageURL }}" />
-</view>
-<view class="submit_box">
-  <van-submit-bar price="{{ 3050 }}" button-text="提交订单" bind:submit="onSubmit" />
-</view>
+<!--pages/cart/index.wxml-->
+<van-cell-group>
+  <van-checkbox-group value="{{ select }}" bind:change="onChange">
+    <van-cell wx:for="{{cartList}}" wx:key="_id" center bind:click="toggle" data-index="{{ index }}">
+      <view class="cell_title" slot="title">
+        <van-checkbox value="{{item.checked}}" class="" name="{{item._id}}">
+        </van-checkbox>
+        <van-image class="covers" width="50" height="50" radius="8px" src="{{item.covers[0]}}" />{{item.name}}
+      </view>
+      <van-stepper integer long-press="{{ false }}" data-index="{{index}}" value="{{ item.nums }}" bind:change="onCount" />
+    </van-cell>
+  </van-checkbox-group>
+
+</van-cell-group>
+<!-- <van-card wx:for="{{cartList}}" wx:key="_id" num="{{item.nums}}" price="{{item.price}}" desc="{{item.desc}}" title="{{item.name}}" thumb="{{ item.covers[0] }}" /> -->
+<van-submit-bar price="{{ totalPrice }}" button-text="提交订单" bind:submit="onSubmit" />
