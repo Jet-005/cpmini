@@ -33,12 +33,12 @@ Page({
           icon: "todo-list-o",
           name: "订单",
           key: "order",
-          path: "/pages/my/orderMana"
+          path: "/pages/orderMana/index"
         }, {
           icon: "user-o",
           name: "个人中心",
           key: "member",
-          path: "/pages/my/my"
+          path: "/pages/my/index"
         }
       ]
     },

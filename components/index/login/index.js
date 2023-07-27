@@ -1,5 +1,5 @@
 // components/login/index.js
-const AUTH = require('../../utils/auth')
+const AUTH = require('../../../utils/auth')
 
 Component({
   /**

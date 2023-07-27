@@ -1,12 +1,18 @@
 const request = require('../utils/request')
 // 获取订单列表
-const getOrderList = (page = 1, data = {}) => {
+const getUserOrderList = (data = {}) => {
+  return request.get(
+    `/order/user/list`, data
+  );
+}
+// 创建订单
+const createOrder = (data = {}) => {
   return request.post(
-    `/order/list/${page}`,
+    '/order/create',
     data
   );
 }
-
 module.exports = {
-  getOrderList
+  getUserOrderList,
+  createOrder
 }

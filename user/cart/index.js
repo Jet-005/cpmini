@@ -1,4 +1,6 @@
 // pages/cart/index.js
+const API = require('../../api/order')
+import Toast from '@vant/weapp/toast/toast';
 Page({
 
   /**
@@ -24,15 +26,35 @@ Page({
       totalPrice: totalPrice * 100
     })
   },
-  onSubmit() {},
+  async onSubmit() {
+    const products = this.data.cartList.filter((e) => e.checked).map((e) => {
+      return {
+        _id: e._id,
+        quantity: e.nums
+      }
+    })
+    console.log(products)
+    const res = await API.createOrder({
+      products
+    })
+    console.log(res)
+    if (res.success) {
+      Toast.success('提交成功，请继续支付');
+      wx.navigateTo({
+        url: '/pages/orderMana/index',
+      })
+    } else {
+      Toast.fail(res.msg);
+    }
+  },
   onChange(event) {
     const {
-      detail
+      detail,
+      currentTarget
     } = event
+    const index = Number(currentTarget.id)
     const cartList = this.data.cartList
-    for (let e of cartList) {
-      e.checked = detail.includes(e._id)
-    }
+    cartList[index].checked = detail
     this.setData({
       cartList
     })

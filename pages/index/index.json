@@ -2,8 +2,8 @@
   "navigationBarTitleText": "",
   "component": true,
   "usingComponents": {
-    "manager": "/components/manager/index",
-    "user": "/components/user/index",
-    "login": "/components/login/index"
+    "manager": "/components/index/manager/index",
+    "user": "/components/index/user/index",
+    "login": "/components/index/login/index"
   }
 }

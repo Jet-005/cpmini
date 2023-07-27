@@ -1,0 +1,4 @@
+<!--components/orderCard/index.wxml-->
+<van-cell-group inset>
+  <van-cell title="{{order}}" value="内容" />
+</van-cell-group>

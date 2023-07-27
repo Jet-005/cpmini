@@ -1,6 +1,6 @@
 // components/manager1/index.js
-const API = require('../../api/mana')
-const utils = require('../../utils/util')
+const API = require('../../../api/mana')
+const utils = require('../../../utils/util')
 
 Component({
   // options: {

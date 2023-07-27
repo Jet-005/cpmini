@@ -1,6 +1,5 @@
 const utils = require('../../utils/util')
 const AUTH = require('../../utils/auth')
-const API = require('../../api/mana')
 
 Page({
   data: {

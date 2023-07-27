@@ -59,6 +59,7 @@
     }
   },
   "usingComponents": {
+    "van-toast": "@vant/weapp/toast/index",
     "van-checkbox": "@vant/weapp/checkbox/index",
     "van-checkbox-group": "@vant/weapp/checkbox-group/index",
     "van-sticky": "@vant/weapp/sticky/index",

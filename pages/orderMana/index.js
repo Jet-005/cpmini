@@ -1,5 +1,6 @@
 // pages/orderMana/index.js
 const API = require('../../api/order')
+const utils = require('../../utils/util')
 
 Page({
 
@@ -8,8 +9,9 @@ Page({
    */
   data: {
     searchValues: '',
-    active: 0,
-    page: 1
+    active: 'all',
+    page: 1,
+    curRole: utils.getRole()
   },
 
   /**
@@ -69,10 +71,10 @@ Page({
   },
   onClick(e) {
     const {
-      index,
+      name,
     } = e.detail
     this.setData({
-      active: index
+      active: name
     })
     this.loadList()
   },
@@ -87,6 +89,6 @@ Page({
       page
     }
     searchValues && (sendData.search = searchValues)
-    const res = await API.getOrderList(page, sendData)
+    const res = await API.getUserOrderList(sendData)
   }
 })

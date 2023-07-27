@@ -1,7 +1,5 @@
 // components/user/index.js
-const API = require('../../api/user')
-const APICom = require('../../api/common')
-const utils = require('../../utils/util')
+const API = require('../../../api/user')
 Component({
   options: {
     styleIsolation: 'shared'
