@@ -1,11 +1,19 @@
 <!--components/orderCard/index.wxml-->
 <van-cell-group inset>
-  <van-cell title="{{order}}" label="label"  title="title" value="{{order.orderStatus}}" />
-  <van-cell value="内容">
+  <van-cell title="{{order._id}}" title="title" value="{{order.orderStatus}}" />
+  <van-cell wx:for="{{order.products}}" wx:key="_id">
     <view slot="title">
       <van-image width="70" height="70" src="{{order.covers[0]}}" />
     </view>
-
+    <view slot="content">
+      <view>{{item.price}}</view>
+      <view>x{{item.quantity}}</view>
+    </view>
   </van-cell>
-
+  <van-cell>
+    <view slot="title">
+      共{{order.totalQuantity}}件商品，金额：{{order.totalAmount}}
+    </view>
+    <view slot="content"></view>
+  </van-cell>
 </van-cell-group>
