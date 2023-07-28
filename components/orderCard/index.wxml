@@ -1,4 +1,11 @@
 <!--components/orderCard/index.wxml-->
 <van-cell-group inset>
-  <van-cell title="{{order}}" value="内容" />
+  <van-cell title="{{order}}" label="label"  title="title" value="{{order.orderStatus}}" />
+  <van-cell value="内容">
+    <view slot="title">
+      <van-image width="70" height="70" src="{{order.covers[0]}}" />
+    </view>
+
+  </van-cell>
+
 </van-cell-group>
